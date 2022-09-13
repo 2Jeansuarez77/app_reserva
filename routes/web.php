@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SociosController;
+use App\Http\Controllers\ReservasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix' => 'socios'], function()
+{
+    Route::get('', [SociosController::class, 'index'])->name('socio.index');
+    Route::get('getSocios', [SociosController::class, 'getSocios'])->name('socio.getSocios');
+    Route::post('create',  [SociosController::class, 'store'])->name('socio.create');   
+    Route::delete('eliminarSocio/{id?}',  [SociosController::class, 'eliminarSocio'])->name('socio.eliminar');   
+    Route::put('actualizarSocio/{id?}',  [SociosController::class, 'actualizarSocio'])->name('socio.actualizar');    
+});
+
+Route::group(['prefix' => ''], function()
+{
+    Route::get('', [ReservasController::class, 'index'])->name('reserva.index');    
 });

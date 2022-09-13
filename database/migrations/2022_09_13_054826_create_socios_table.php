@@ -15,7 +15,7 @@ class CreateSociosTable extends Migration
     {
         Schema::create('socios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('dni')->unique();
+            $table->string('dni')->nullable()->unique();
             $table->string('nombres',255);
             $table->string('apellidos',255);
             $table->date('fecha_alta');
