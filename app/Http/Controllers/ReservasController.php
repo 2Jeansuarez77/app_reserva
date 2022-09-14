@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Socio; 
 use App\Models\Reserva; 
+
 
 use App\Contracts\ReservaRepository;
 
@@ -29,6 +31,7 @@ class ReservasController extends Controller
         $butacas = request('butacas');
         $fecha_reserva = request('fecha_reserva');
 
+
         if(empty($butacas)){
             return response()->json(['message' => 'Agregue una fila y columna, para reservar', 'error' => true],200);
         }
@@ -40,6 +43,8 @@ class ReservasController extends Controller
         {
             return response()->json(['message' => 'No fue posible completar la operacion', 'error' => true],200);
         }
+
+        Log::info('Reserva generada');
 
         return response()->json(['message' => 'Reserva exitosa', 'error' => false],200);
     }
