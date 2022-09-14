@@ -13,13 +13,13 @@ use App\Contracts\SocioRepository;
 class SociosController extends Controller
 {
     //
-    public function index(SocioRepository $socioRepository)
+    public function index()
     {
         return view('socios/manage');
     }
 
     // function crear socios
-    public function store(SociosPostRequest $request, SocioRepository $socioRepository )
+    public function store(SociosPostRequest $request, SocioRepository $socioRepository)
     {
         $socio = $socioRepository->create($request);
         return response()->json(['message' => true],200);

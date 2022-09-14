@@ -26,5 +26,12 @@ Route::group(['prefix' => 'socios'], function()
 
 Route::group(['prefix' => ''], function()
 {
-    Route::get('', [ReservasController::class, 'index'])->name('reserva.index');    
+    Route::get('', [ReservasController::class, 'index'])->name('reserva.index');  
+    Route::get('getReservas', [ReservasController::class, 'getReservas'])->name('reserva.getReservas');
+    Route::post('create',  [ReservasController::class, 'store'])->name('reserva.create');   
+    Route::delete('eliminarReserva/{id?}',  [ReservasController::class, 'eliminarReserva'])->name('reserva.eliminar');   
+    Route::put('actualizarReserva/{id?}',  [ReservasController::class, 'actualizarReserva'])->name('reserva.actualizar');
+    Route::get('diponibleReserva/{fila?}/{columna?}',  [ReservasController::class, 'estaDisponible'])->name('reserva.disponible');
+
+
 });

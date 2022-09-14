@@ -15,16 +15,14 @@ class CreateReservasTable extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('fila')->unique();
-            $table->integer('columna')->unique();
             $table->date('fecha_reserva');
-            $table->bigInteger('socio_id')->unsigned(); 
-
+            $table->bigInteger('socio_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('socio_id')->references('id')->on('socios')->onUpdate('cascade')->onDelete('cascade');
+
 
         });
     }
