@@ -11,6 +11,15 @@
 
 - Laravel v9.
 - PHP 8.
+- MYSQL
+
+## Install
+- composer install
+- Renombrar file .env.example a .env
+- const => DB_DATABASE=db_reserva
+- En la linea de comandos de MYSQL> create database db_reserva
+- php artisan migrate
+- php artisan serve
 
 ## About Laravel
 
