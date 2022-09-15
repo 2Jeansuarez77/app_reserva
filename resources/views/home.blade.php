@@ -120,7 +120,7 @@
             
           </div>
           <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" v-on:click="getreservas()">Salir</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" v-on:click="getReserva()">cancelar</button>
 
               <button v-if="reserva.id > 0" id="btn-save"  type="button" class="btn btn-success"  v-on:click ="actualizarReserva()"> Actualizar</button>
               <button v-else type="button" id="btn-save" class="btn btn-success" v-on:click ="createReserva()">Guardar</button>

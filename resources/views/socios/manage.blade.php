@@ -82,7 +82,7 @@
                     
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" v-on:click="getSocios()">Salir</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" v-on:click="getSocios()">cancelar</button>
 
                     <button v-if="socio.id > 0" id="btn-save"  type="button" class="btn btn-success" v-on:click ="actualizarSocio()"> Actualizar</button>
                     <button v-else type="button" id="btn-save" class="btn btn-success" v-on:click ="createSocio()">Guardar</button>

@@ -1,4 +1,3 @@
-
   var app = new Vue({
     el: '#app',
     data: {
@@ -14,7 +13,7 @@
 
             mv = this;
             $.get( URL_SOCIOS, function(resp) {
-
+                var resp = JSON.parse(resp)
                 mv.socios = resp.socios;
             })
             .fail(function() {
@@ -54,12 +53,31 @@
                     $('#btn-save').prop('disabled', true);
                     $.post( URL_SOCIOS_CREATE, this.socio, function(resp) {
 
-                        alert("Registro exitoso");
-                        mv.getSocios();
-                        mv.resetConfig();
+                        var resp = JSON.parse(resp)
+                        var content = ''
 
+                        if(resp.errors){
+
+                            Object.values(resp.errors).forEach(function(element) {
+                                content += '* '+element[0] + " <br>";
+                            });
+
+                            $("#error_panel").show();
+                            $("#error_panel").html(content);
+                            
+                            $('#btn-save').prop('disabled', false);
+                            alert( "Verificar datos del formulario" );
+                        }else{
+
+                            alert("Registro exitoso");
+                            mv.getSocios();
+                            mv.resetConfig();
+                        }
                     })
                     .fail(function(resp) {
+
+                        var resp = JSON.parse(resp)
+
                         let result = resp.responseJSON;
                         var content = ''
 
@@ -72,6 +90,8 @@
                         
                         $('#btn-save').prop('disabled', false);
                         alert( "Verificar datos del formulario" );
+
+                        
                     });
                 }
 

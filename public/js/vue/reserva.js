@@ -19,6 +19,7 @@
             mv = this;
             $.get( URL_RESERVA, function(resp) 
             {
+                var resp = JSON.parse(resp);
                 mv.reservas = resp.reservas;
             })
             .fail(function() 
@@ -30,7 +31,7 @@
 
             mv = this;
             $.get( URL_SOCIOS, function(resp) {
-
+                var resp = JSON.parse(resp);
                 mv.socios = resp.socios;
             })
             .fail(function() {
@@ -66,7 +67,7 @@
 
                     $('#btn-save').prop('disabled', true);
                     $.post( URL_RESERVA_CREATE, this.reserva, function(resp) {
-
+                        var resp = JSON.parse(resp);
                         if(!resp.error){
                             mv.getReserva();
                             mv.resetConfig();
@@ -97,6 +98,7 @@
                         "_token": _TOKEN,
                     },
                     success: function (result) {
+                        var result = JSON.parse(result);
                         alert(result.message);
                         mv.getReserva();
                         mv.resetConfig();
@@ -119,6 +121,7 @@
                 type: 'PUT',
                 data: mv.reserva,
                 success: function (result) {
+                    var result = JSON.parse(result);
                     alert(result.message);
                     if(!result.error){
                         mv.getReserva();
@@ -165,6 +168,8 @@
             {
                 $.get( URL_RESERVA_DISPONIBLE + '/'+ this.fila + '/' + this.columna, {fecha : this.reserva.fecha_reserva} , function(resp) 
                 {
+                    var resp = JSON.parse(resp);
+
                     if(!resp.error){
                         
                         mv.reserva.butacas.push(
