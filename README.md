@@ -18,6 +18,7 @@
 - Renombrar file .env.example a .env
 - const => DB_DATABASE=db_reserva
 - En la linea de comandos de MYSQL> create database db_reserva
+- php artisan key:generate
 - php artisan migrate
 - php artisan serve
 
