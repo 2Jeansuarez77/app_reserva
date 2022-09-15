@@ -1,3 +1,10 @@
+
+FROM composer as builder
+WORKDIR /app/
+COPY composer.* ./
+
+RUN composer install
+
 FROM php:8.0-fpm
 
 # Install PHP extensions
