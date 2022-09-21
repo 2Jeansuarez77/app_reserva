@@ -12,7 +12,7 @@ class Reservas_butaca extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function createButacas($data, $reserva_id)
+    public static function createButacas($data, $reserva_id)
     {
         $butaca =  new Reservas_butaca();
         $butaca->fila = $data["fila"];
@@ -22,7 +22,7 @@ class Reservas_butaca extends Model
         return $butaca->save();
     }
 
-    public function estaReservado($fila, $columna, $fecha, $reserva_id = null)
+    public static function estaReservado($fila, $columna, $fecha, $reserva_id = null)
     {
 
         $butacas = Reservas_butaca::join('reservas', 'reservas.id', '=', 'reservas_butacas.reserva_id')
@@ -35,7 +35,7 @@ class Reservas_butaca extends Model
         return $butacas->count() > 0;
     }
 
-    public function actualizarButacas($data, $id)
+    public static function actualizarButacas($data, $id)
     {
         $butaca = Reservas_butaca::find($id);
         $butaca->fila = $data["fila"];

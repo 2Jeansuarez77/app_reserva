@@ -14,7 +14,7 @@ class Reserva extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function getReservas()
+    public static function getReservas()
     {
         $data = Reserva::select('reservas.*','nombres', 'apellidos', 'dni')
                 ->join('socios', 'socios.id', '=', 'reservas.socio_id')
@@ -29,12 +29,12 @@ class Reserva extends Model
         return $data;
     }
 
-    private function getReservaButacas($reserva_id)
+    private static function getReservaButacas($reserva_id)
     {
         return Reservas_butaca::where('reserva_id', $reserva_id)->get();
     }
 
-    public function estaReservado($butacas, $fecha, $reserva_id = null)
+    public static function estaReservado($butacas, $fecha, $reserva_id = null)
     {
         foreach ($butacas as  $value) {
             if(Reservas_butaca::estaReservado($value["fila"], $value["columna"], $fecha, $reserva_id))
@@ -46,7 +46,7 @@ class Reserva extends Model
         return false;
     }
 
-    public function createReservas($reserva_data){
+    public static function createReservas($reserva_data){
 
         // creamos una transaction para mantener una transparencia en los datos en caso de errores
         DB::beginTransaction();
@@ -82,7 +82,7 @@ class Reserva extends Model
 
     }
 
-    public function actualizarReservar($data, $id)
+    public static function actualizarReservar($data, $id)
     {
          // creamos una transaction para mantener una transparencia en los datos en caso de errores
          DB::beginTransaction();
@@ -123,7 +123,7 @@ class Reserva extends Model
          }
     }
 
-    public function eliminarReserva($id)
+    public static function eliminarReserva($id)
     {
         // creamos una transaction para mantener una transparencia en los datos en caso de errores
         DB::beginTransaction();
@@ -145,7 +145,7 @@ class Reserva extends Model
         return true;
     }
 
-    public function estaDiponible($fila, $columna, $fecha)
+    public static function estaDiponible($fila, $columna, $fecha)
     {
         return !Reservas_butaca::estaReservado($fila, $columna, $fecha);
     }

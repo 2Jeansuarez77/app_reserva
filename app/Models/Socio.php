@@ -11,11 +11,11 @@ class Socio extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function getSocios(){
+    public static function getSocios(){
         return Socio::orderBy('nombres', 'asc')->get();
     }
 
-    public function create($data)
+    public static function create($data)
     {
         // creamos el socio
         $socio = new Socio();
@@ -27,7 +27,7 @@ class Socio extends Model
         return $socio->save();
     }
 
-    public function actualizarSocio($data, $id)
+    public static function actualizarSocio($data, $id)
     {
         $socio = Socio::find($id);
         $socio->dni = $data->dni;
@@ -36,7 +36,7 @@ class Socio extends Model
         return $socio->save();
     }
 
-    public function eliminarSocio($id){
+    public static function eliminarSocio($id){
         $socio = Socio::find($id);
         $socio->dni = null;
         $socio->save();

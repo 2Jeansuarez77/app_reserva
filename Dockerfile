@@ -1,10 +1,3 @@
-
-FROM composer as builder
-WORKDIR /app/
-COPY composer.* ./
-
-RUN composer install
-
 FROM php:8.0-fpm
 
 # Install PHP extensions
@@ -18,7 +11,14 @@ COPY composer.lock composer.json /var/www/
 WORKDIR /var/www
 
 # Install dependencies
-RUN apt-get update && apt-get install
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
